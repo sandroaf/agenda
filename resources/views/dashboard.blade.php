@@ -10,6 +10,16 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
+                    @for($i = 0; $i < 10; $i++)
+                    <dl>
+                        <dt>Name</dt>
+                        <dd>{{ fake()->name() }}</dd>
+
+                        <dt>Email</dt>
+                        <dd>{{ fake()->unique()->safeEmail() }}</dd>
+                    </dl>
+                @endfor
+
                 </div>
             </div>
         </div>
