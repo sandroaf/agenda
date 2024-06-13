@@ -21,7 +21,7 @@ class ContatosController extends Controller
      */
     public function create()
     {
-        //
+        return view('contatos.create');
     }
 
     /**
@@ -29,7 +29,15 @@ class ContatosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $contato = new Contato();
+        $contato->nome = $request->input("nome");
+        $contato->email = $request->input("email");
+        $contato->telefone = $request->input("telefone");
+        $contato->cidade = $request->input("cidade");
+        $contato->estado = $request->input("estado");
+        if($contato->save()) {
+            return redirect('contatos');
+        }
     }
 
     /**
@@ -37,7 +45,8 @@ class ContatosController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $contato = Contato::find($id);
+        return view('contatos.show',array('contato' => $contato));
     }
 
     /**
